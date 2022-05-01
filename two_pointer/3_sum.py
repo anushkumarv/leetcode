@@ -27,7 +27,7 @@ class Solution:
 
         op = []
         processed_triplet = set()
-        sorted_nums = sorted(nums)
+        sorted_nums = sorted(nums) # we can use nums.sort() as well for inplace operation
         for i, item in enumerate(sorted_nums):
             left = i + 1
             right = len(sorted_nums) - 1
