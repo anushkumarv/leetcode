@@ -1,17 +1,13 @@
 class Solution:
     def containsDuplicate(self, nums):
         
-        item_counts = dict()
+        item_set = set()
         
         for item in nums:
-            if item in item_counts:
-                item_counts[item] += 1
+            if item in item_set:
+                return True
             else:
-                item_counts[item] = 1
-                
-        for key in item_counts:
-            if item_counts[key] > 1:
-                return True 
+                item_set.add(item)
             
         return False 
 
