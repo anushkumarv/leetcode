@@ -16,20 +16,11 @@ class Solution:
     def twoSum(self, nums, target):
         nums_dict = {}
         for i, num in enumerate(nums):
-            if num in nums_dict:
-                nums_dict[num].append(i)
-            else:
-                nums_dict[num] = [i]
+            if target - num in nums_dict:
+                return [nums_dict[target - num], i]
 
-        for i, num in enumerate(nums):
-            req_num  = target - num
-            if req_num in nums_dict and req_num != num:
-                return [i, nums_dict[req_num][0]]
-            elif req_num in nums_dict and req_num == num:
-                if len(nums_dict[num]) > 1:
-                    return [nums_dict[num][0], nums_dict[num][-1]]
             else:
-                continue 
+                nums_dict[num] = i
 
         return None
 
