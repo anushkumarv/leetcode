@@ -1,5 +1,5 @@
 class Solution:
-    def search(self, nums: List[int], target: int) -> int:
+    def search(self, nums, target):
         
         if len(nums) == 1:
             return 0 if nums[0] == target else -1
