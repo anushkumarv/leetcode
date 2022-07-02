@@ -1,4 +1,3 @@
-
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -31,6 +30,27 @@ class Solution:
             return None
             
 
+class SolutionInOrder:
+    def mergeTwoLists(self, l1, l2):
+        dummy = ListNode(0)
+        dummy_head = dummy
+        
+        while(l1 is not None and l2 is not None):
+            
+            if (l1.val <= l2.val):
+                dummy.next = l1
+                dummy = l1
+                l1 = l1.next
+            else:
+                dummy.next = l2
+                dummy = l2
+                l2 = l2.next
+
+        dummy.next = l1 if l2 is None else l2
+        
+        return dummy_head.next
+
+
 def print_linked_list(head):
     temp = head
     while temp is not None:
@@ -38,8 +58,15 @@ def print_linked_list(head):
         temp = temp.next
     print()
 
+
 sol = Solution()
 ## time complexity - O(m+n)
 ## space complexity - O(m+n)
+print_linked_list(sol.mergeTwoLists(ListNode(1,ListNode(2,ListNode(4))), ListNode(1,ListNode(3, ListNode(4)))))
+
+
+sol = SolutionInOrder()
+## time complexity - O(m+n)
+## space complexity - O(1)
 print_linked_list(sol.mergeTwoLists(ListNode(1,ListNode(2,ListNode(4))), ListNode(1,ListNode(3, ListNode(4)))))
             
