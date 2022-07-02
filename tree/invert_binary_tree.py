@@ -1,12 +1,6 @@
 # Definition for a binary tree node.
 from typing import Optional
-
-
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+from common import TreeNode, print_tree
 
         
 class Solution:
@@ -21,26 +15,6 @@ class Solution:
         
         return root
 
-
-def print_tree(node):
-    l = list()
-    traverse(node, l)
-    print(l)
-
-def traverse(node, l):
-
-    if not node:
-        return  
-    
-    l.append(node.val)
-    if node.left:
-        l.append(node.left.val)
-    if node.right:
-        l.append(node.right.val)
-        
-    traverse(node.left, l)
-    traverse(node.right, l)
-    
     
 sol = Solution()
 ## time complexity - O(n) where n is the number of nodes in the tree
