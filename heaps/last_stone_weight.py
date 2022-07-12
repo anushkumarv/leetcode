@@ -39,7 +39,7 @@ class SolutionHeap:
 
 
 sol = SolutionHeap()
-## time complexity - O(logn * logn)
+## time complexity - O(nlogn)
 ## space complexity - O(1)
 print(sol.lastStoneWeight([2,7,4,1,8,1]))
 print(sol.lastStoneWeight([1]))
