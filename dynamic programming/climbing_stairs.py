@@ -11,6 +11,7 @@ class SolutionBruteForce:
 sol = SolutionBruteForce()
 ## time complexity - O(2^n)
 ## space complexity - O(n)
+print("## Brute Force ##")
 print(sol.climbStairs(2))
 print(sol.climbStairs(10))
 
@@ -33,6 +34,7 @@ class Solution:
 sol = Solution()
 ## time complexity - O(n)
 ## space complexity - O(n)
+print("## Memoisation ##")
 print(sol.climbStairs(2))
 print(sol.climbStairs(40))
 
@@ -55,5 +57,6 @@ class SolutionIterative:
 sol = SolutionIterative()
 ## time complexity - O(n)
 ## space complexity - O(1)
+print("## Iterative ##")
 print(sol.climbStairs(2))
 print(sol.climbStairs(40))
