@@ -1,4 +1,5 @@
 from typing import Optional, List
+import collections
 
 
 # Definition for a binary tree node.
@@ -47,8 +48,33 @@ class Solution:
         return self.ret_val
 
 
+class SolutionBFS:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        res = []
+        q = collections.deque()
+        if root:
+            q.append(root)
+
+        while q:
+            val = []
+
+            for i in range(len(q)):
+                node = q.popleft()
+                val.append(node.val)
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+            res.append(val)
+        return res
+
 sol = Solution()
 ## time complexity - O(n) where n = nodes in tree
 ## space complexity - O(n + l) where n = nodes in tree, l = number of levels in tree
 root = TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7)))
+print(sol.levelOrder(root))
+
+sol = SolutionBFS()
+## time complexity - O(n) where n = nodes in tree
+## space complexity - O(n) where n = nodes in tree
 print(sol.levelOrder(root))
