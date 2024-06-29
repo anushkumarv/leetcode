@@ -72,25 +72,19 @@ class TreeNode:
         self.right = right
 class SolutionWeekly29Jun:
     def splitBST(self, root: Optional[TreeNode], target: int) -> List[Optional[TreeNode]]:
-        res = [None, None]
-        prev_left, prev_right = None, None
+        res = [TreeNode(-1), TreeNode(-1)]
+        prev_left, prev_right = res[0], res[1]
         cur = root 
         while cur:
             if cur.val <= target:
-                if not res[0]:
-                    res[0] = cur                    
-                else:
-                    prev_left.right = cur
+                prev_left.right = cur
                 prev_left = cur
                 cur = cur.right
                 prev_left.right = None
             else:
-                if not res[1]:
-                    res[1] = cur
-                else:
-                    prev_right.left = cur
+                prev_right.left = cur
                 prev_right = cur
                 cur = cur.left
                 prev_right.left = None
 
-        return res
+        return [res[0].right, res[1].left]
