@@ -1,5 +1,5 @@
 from collections import heapq, deque
-from typing import List
+from typing import List, Optional
 
 # #####
 # https://leetcode.com/problems/maximum-total-importance-of-roads
@@ -60,3 +60,37 @@ class Solution28Jun:
         
         return res
         
+# #####
+# https://leetcode.com/problems/split-bst/
+# #####
+
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class SolutionWeekly29Jun:
+    def splitBST(self, root: Optional[TreeNode], target: int) -> List[Optional[TreeNode]]:
+        res = [None, None]
+        prev_left, prev_right = None, None
+        cur = root 
+        while cur:
+            if cur.val <= target:
+                if not res[0]:
+                    res[0] = cur                    
+                else:
+                    prev_left.right = cur
+                prev_left = cur
+                cur = cur.right
+                prev_left.right = None
+            else:
+                if not res[1]:
+                    res[1] = cur
+                else:
+                    prev_right.left = cur
+                prev_right = cur
+                cur = cur.left
+                prev_right.left = None
+
+        return res
