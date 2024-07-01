@@ -88,3 +88,16 @@ class SolutionWeekly29Jun:
                 prev_right.left = None
 
         return [res[0].right, res[1].left]
+    
+
+# #####
+# https://leetcode.com/problems/three-consecutive-odds
+# #####
+
+class Solution30Jun:
+    def threeConsecutiveOdds(self, arr: List[int]) -> bool:
+        for i in range(len(arr)-2):
+            n1, n2, n3 = arr[i], arr[i+1], arr[i+2]
+            if n1 % 2 != 0 and n2 % 2 != 0 and n3 %2 != 0:
+                return True
+        return False
