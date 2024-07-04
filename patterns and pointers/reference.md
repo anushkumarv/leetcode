@@ -9,6 +9,7 @@ Pattern recognition in leetcode
         * [Reorganize String](https://leetcode.com/problems/reorganize-string/)
         * [Kth largest number in a stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/)
         * [Rearrange string K distance apart](https://leetcode.com/problems/rearrange-string-k-distance-apart)
+        * [Minimum Difference Between Largest and Smallest Value in Three Moves](https://leetcode.com/problems/minimum-difference-between-largest-and-smallest-value-in-three-moves)
     * Find Kth sorted matrix of arrays
         * [Merge K sorted](https://leetcode.com/problems/merge-k-sorted-lists)
         * [Find K pairs with smallest sums](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/)
