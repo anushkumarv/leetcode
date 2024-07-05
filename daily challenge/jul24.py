@@ -71,3 +71,36 @@ class Solution3Jul:
                 s += cur.val
             cur = cur.next
         return dummy.next
+    
+# #####
+# https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/
+# #####
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution4Jul:
+    def nodesBetweenCriticalPoints(self, head: Optional[ListNode]) -> List[int]:
+        i = 0
+        cur = head
+        prev_node, cur = None, head
+        first, last, prev = None, None, None
+        min_dist = float("inf")
+        
+        while cur:
+            if prev_node \
+               and cur.next \
+               and (prev_node.val < cur.val > cur.next.val \
+                    or prev_node.val > cur.val < cur.next.val):
+                first = i if not first else first
+                last = i
+                min_dist = min(min_dist, i - prev) if prev else min_dist
+                prev = i
+
+            prev_node = cur
+            cur = cur.next
+            i += 1
+
+        return [min_dist, last - first] if min_dist != float("inf") else [-1, -1] 
