@@ -14,4 +14,8 @@ Pattern recognition in leetcode
         * [Merge K sorted](https://leetcode.com/problems/merge-k-sorted-lists)
         * [Find K pairs with smallest sums](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/)
         * [Find the Kth Smallest Sum of a Matrix With Sorted Rows](https://leetcode.com/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows/)
-        * [Kth Smallest Element in a Sorted Matrix](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/description/)
+        * [Kth Smallest Element in a Sorted Matrix](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/)
+    * Two Heaps
+        * [Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/)
+        * [Sliding window median](https://leetcode.com/problems/sliding-window-median)
+        
