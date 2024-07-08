@@ -104,3 +104,42 @@ class Solution4Jul:
             i += 1
 
         return [min_dist, last - first] if min_dist != float("inf") else [-1, -1] 
+
+# #####
+# https://leetcode.com/problems/pass-the-pillow
+# #####
+
+class Solution5Jul:
+    def passThePillow(self, n: int, time: int) -> int:
+        cycle_time = n - 1
+        cycles = time // cycle_time
+        position = time % cycle_time
+        if cycles & 1:
+            return n - position
+        return 1 + position
+    
+# #####
+# https://leetcode.com/problems/water-bottles
+# #####
+
+class Solution6Jul:
+    def numWaterBottles(self, numBottles: int, numExchange: int) -> int:
+        full_b, emp_b = numBottles, 0
+        count = 0
+        while full_b > 0:
+            count += full_b
+            emp_b += full_b
+            full_b = emp_b // numExchange
+            emp_b = emp_b % numExchange
+        return count
+
+# #####
+# https://leetcode.com/problems/find-the-winner-of-the-circular-game
+# #####
+
+class Solution7Jul:
+    def findTheWinner(self, n: int, k: int) -> int:
+        prev = 0
+        for i in range(2, n+1):
+            prev = (prev + k) % i
+        return prev + 1
