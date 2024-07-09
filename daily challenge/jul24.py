@@ -143,3 +143,20 @@ class Solution7Jul:
         for i in range(2, n+1):
             prev = (prev + k) % i
         return prev + 1
+
+# #####
+# https://leetcode.com/problems/average-waiting-time
+# #####    
+
+class Solution8Jul:
+    def averageWaitingTime(self, customers: List[List[int]]) -> float:
+        prev_stime, prev_etime = customers[0][0], customers[0][0] + customers[0][1]
+        wt = prev_etime - prev_stime
+        
+        for i in range(1, len(customers)):
+            prev_etime = max(prev_etime, customers[i][0])
+            etime = prev_etime + customers[i][1]
+            wt += etime - customers[i][0] 
+            prev_etime = etime
+
+        return wt / len(customers)
