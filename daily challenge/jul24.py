@@ -160,3 +160,20 @@ class Solution8Jul:
             prev_etime = etime
 
         return wt / len(customers)
+
+# #####
+# https://leetcode.com/problems/crawler-log-folder
+# #####
+
+class Solution9Jul:
+    def minOperations(self, logs: List[str]) -> int:
+        depth = 0
+        for op in logs:
+            if op == "../":
+                depth -= 1
+            elif op == "./":
+                continue
+            else:
+                depth += 1
+            depth = max(depth, 0)
+        return depth
