@@ -177,3 +177,32 @@ class Solution9Jul:
                 depth += 1
             depth = max(depth, 0)
         return depth
+
+# #####
+# https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses
+# ####
+
+
+class Solution10Jul:
+    def reverseParentheses(self, s: str) -> str:
+        d = {}
+        stk = []
+        for i, c in enumerate(s):
+            if c == ')':
+                start = stk.pop()
+                d[start] = i
+                d[i] = start
+            elif c == '(':
+                stk.append(i)
+
+        res = []
+        dir_ = 1
+        i = 0
+        while i < len(s):
+            if s[i] == '(' or s[i] == ')':
+                i = d[i]
+                dir_ = -dir_
+            else:
+                res.append(s[i])
+            i += dir_
+        return ''.join(res)
