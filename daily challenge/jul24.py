@@ -206,3 +206,68 @@ class Solution10Jul:
                 res.append(s[i])
             i += dir_
         return ''.join(res)
+    
+# #####
+# https://leetcode.com/problems/maximum-score-from-removing-substrings
+# ####    
+
+class Solution11Jul:
+    def maximumGain(self, s: str, x: int, y: int) -> int:
+        if x > y:
+            s, res1 = self.patternPoints(s, "ab", x)
+            _, res2 = self.patternPoints(s, "ba", y)
+        else:
+            s, res1 = self.patternPoints(s, "ba", y)
+            _, res2 = self.patternPoints(s, "ab", x)
+        return res1 + res2
+    
+    def patternPoints(self, s, pattern, points):
+        count = 0
+        stk = []
+        for c in s:
+            stk.append(c)
+            if len(stk) >= 2 and stk[-1] == pattern[-1] and stk[-2] == pattern[-2]:
+                stk.pop()
+                stk.pop()
+                count += points
+        return ''.join(stk), count
+
+# #####
+# https://leetcode.com/problems/robot-collisions
+# ####    
+
+class Robot:
+    def __init__(self, position, health, direction, weight):
+        self.position = position
+        self.health = health
+        self.direction = direction
+        self.weight = weight
+
+    def __lt__(self, robot):
+        return self.position < robot.position
+    
+    def __repr__(self):
+        return f"(pos: {self.position}, health: {self.health}, dir: {self.direction})"
+
+class Solution12Jul:
+    def survivedRobotsHealths(self, positions: List[int], healths: List[int], directions: str) -> List[int]:
+        n = len(positions)
+        robots = [Robot(positions[i], healths[i], directions[i], i) for i in range(n)]
+        robots.sort()
+        stk = []
+        for robot in robots:
+            while stk and stk[-1].direction == "R" and robot.direction == "L":
+                prev_robot = stk.pop()
+                if prev_robot.health == robot.health:
+                    robot = None
+                    break
+                new_dir = "R" if prev_robot.health > robot.health else "L"
+                new_health = prev_robot.health - 1 if prev_robot.health > robot.health else robot.health - 1
+                new_weight = prev_robot.weight if prev_robot.health > robot.health else robot.weight
+                robot.direction = new_dir
+                robot.health = new_health
+                robot.weight = new_weight
+            if robot:
+                stk.append(robot)
+        stk.sort(key=lambda robot: robot.weight)
+        return [robot.health for robot in stk]
