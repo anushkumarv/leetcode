@@ -271,3 +271,67 @@ class Solution12Jul:
                 stk.append(robot)
         stk.sort(key=lambda robot: robot.weight)
         return [robot.health for robot in stk]
+    
+# #####
+# https://leetcode.com/problems/number-of-atoms
+# ####    
+
+class Solution13Jul:
+    def countOfAtoms(self, formula: str) -> str:
+        f_arr = []
+        i = 0
+        for i in range(len(formula)):
+            ch = formula[i]
+            if ch.islower() and f_arr:
+                f_arr[-1] = f_arr[-1] + ch
+                continue
+            elif ch.isdigit() and f_arr and f_arr[-1].isdigit():
+                f_arr[-1] = f_arr[-1] + ch
+                continue
+
+            if ch.isupper() and f_arr and not f_arr[-1].isdigit():
+                if f_arr[-1] != "(":
+                    f_arr.append(str(1))
+            elif ch == ")" and f_arr and not f_arr[-1].isdigit() and f_arr[-1] != "(" and f_arr[-1] != ")":
+                f_arr.append(str(1))
+            elif ch == "(" and f_arr and not f_arr[-1].isdigit() and not f_arr[-1] == "(" and f_arr[-1] != ")":
+                f_arr.append(str(1))
+            f_arr.append(ch)
+            
+        if f_arr[-1].isupper():
+            f_arr.append(str(1))
+
+        stk = []
+        bstk = []
+        for i, ch in enumerate(f_arr):
+            if ch.isdigit() and stk and stk[-1] == ")":
+                for i in range(len(stk)-1,bstk[-1],-1):
+                    if stk[i].isdigit():
+                        stk[i] = str(int(stk[i]) * int(ch))
+                bstk.pop()  
+                stk.append("@")   
+            else:
+                if ch == "(":
+                    bstk.append(i)
+                stk.append(ch)
+
+        d = {}
+        for i, item in enumerate(stk):
+            if item == "(" or item == ")" or item == "@":
+                continue
+            if not item.isdigit():
+                d[item] = d.get(item, 0)
+            else:
+                key = stk[i-1]
+                d[key] += int(item)
+        
+        keys = list(d.keys())
+        keys.sort()
+        res = []
+        for key in keys:
+            if d[key] == 1:
+                res.append(key)
+            else:
+                res.append(key + str(d[key]))
+        return "".join(res)
+        
