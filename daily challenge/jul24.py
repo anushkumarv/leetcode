@@ -334,4 +334,36 @@ class Solution13Jul:
             else:
                 res.append(key + str(d[key]))
         return "".join(res)
-        
+
+# #####
+# https://leetcode.com/problems/create-binary-tree-from-descriptions
+# ####    
+
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution14Jul:
+    def createBinaryTree(self, descriptions: List[List[int]]) -> Optional[TreeNode]:
+        d = {}
+        non_roots = set()
+        for parent, child, isleft in descriptions:
+            if parent not in d:
+                d[parent] = TreeNode(parent)
+            if child not in d:
+                d[child] = TreeNode(child)
+            pnode, cnode = d[parent], d[child]
+            if isleft:
+                pnode.left = cnode
+            else:
+                pnode.right = cnode
+            non_roots.add(child)
+
+        for key in d:
+            if key not in non_roots:
+                return d[key]
+
+        return
+            
