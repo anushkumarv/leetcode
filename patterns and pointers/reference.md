@@ -1,6 +1,7 @@
 Pattern recognition in leetcode
 
 * Heaps
+    * Credit to leetcode post (https://leetcode.com/discuss/general-discussion/1127238/master-heap-by-solving-23-questions-in-4-pattern-categories) 
     * Top K pattern
         * [Kth largest number in an array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
         * [K closest points to origin](https://leetcode.com/problems/k-closest-points-to-origin)
@@ -19,3 +20,6 @@ Pattern recognition in leetcode
         * [Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/)
         * [Sliding window median](https://leetcode.com/problems/sliding-window-median)
         * [IPO](https://leetcode.com/problems/ipo)
+    * Minimum number pattern
+        * [Minimum cost to connect sticks](https://leetcode.com/problems/minimum-cost-to-connect-sticks)
+        * [Meeting rooms 2](https://leetcode.com/problems/meeting-rooms-ii)
