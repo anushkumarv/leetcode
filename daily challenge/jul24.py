@@ -345,6 +345,7 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
 class Solution14Jul:
     def createBinaryTree(self, descriptions: List[List[int]]) -> Optional[TreeNode]:
         d = {}
@@ -366,4 +367,52 @@ class Solution14Jul:
                 return d[key]
 
         return
-            
+
+# #####
+# https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another
+# ####    
+
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def getDirections(self, root: Optional[TreeNode], startValue: int, destValue: int) -> str:
+        def dfs(node, target, path):
+            if not node:
+                return False
+            if node.val == target:
+                path.append((node.val, "C"))
+                return True
+
+            path.append((node.val, "L"))
+            if dfs(node.left, target, path):
+                return True
+            path.pop()
+
+            path.append((node.val, "R"))
+            if dfs(node.right, target, path):
+                return True
+            path.pop()
+
+            return False
+
+        startpath = []
+        dfs(root, startValue, startpath)
+        
+        endpath = []
+        dfs(root, destValue, endpath)
+        
+        i = 0
+        while i < len(startpath) and i < len(endpath) and startpath[i][0] == endpath[i][0]:
+            i += 1
+        i -= 1
+
+        res = ["U"] * (len(startpath) - i - 1)
+        while i < len(endpath) - 1:
+            res.append(endpath[i][1])
+            i += 1
+        return "".join(res)
