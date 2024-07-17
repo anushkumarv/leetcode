@@ -379,7 +379,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
-class Solution:
+class Solution15Jul:
     def getDirections(self, root: Optional[TreeNode], startValue: int, destValue: int) -> str:
         def dfs(node, target, path):
             if not node:
@@ -416,3 +416,35 @@ class Solution:
             res.append(endpath[i][1])
             i += 1
         return "".join(res)
+    
+# #####
+# https://leetcode.com/problems/delete-nodes-and-return-forest
+# ####    
+
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution16Jul:
+    def delNodes(self, root: Optional[TreeNode], to_delete: List[int]) -> List[TreeNode]:
+        res = []
+        to_delete = set(to_delete)
+        def dfs(node, prev_node):
+            if node == None:
+                return
+            
+            if prev_node == None and node.val not in to_delete:
+                res.append(node)
+                    
+            prev_node = node if node.val not in to_delete else None
+            dfs(node.left, prev_node)
+            if node.left and node.left.val in to_delete:
+                node.left = None
+            dfs(node.right, prev_node)
+            if node.right and node.right.val in to_delete:
+                node.right = None
+
+        dfs(root, None)
+        return res
