@@ -453,7 +453,7 @@ class Solution16Jul:
 # https://leetcode.com/problems/lucky-numbers-in-a-matrix
 # ####    
 
-class Solution:
+class Solution17Jul:
     def luckyNumbers (self, matrix: List[List[int]]) -> List[int]:
         mins, maxs = [], []
         for row in matrix:
