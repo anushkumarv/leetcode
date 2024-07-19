@@ -448,3 +448,27 @@ class Solution16Jul:
 
         dfs(root, None)
         return res
+    
+# #####
+# https://leetcode.com/problems/lucky-numbers-in-a-matrix
+# ####    
+
+class Solution:
+    def luckyNumbers (self, matrix: List[List[int]]) -> List[int]:
+        mins, maxs = [], []
+        for row in matrix:
+            mins.append(min(row))
+
+        for j in range(len(matrix[0])):
+            temp = matrix[0][j]
+            for i in range(len(matrix)):
+                temp = max(temp, matrix[i][j])
+            maxs.append(temp)
+
+        res = []
+        for i in range(len(mins)):
+            for j in range(len(maxs)):
+                if mins[i] == maxs[j]:
+                    res.append(mins[i])
+
+        return res
