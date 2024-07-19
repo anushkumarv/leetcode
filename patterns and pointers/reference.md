@@ -25,3 +25,4 @@ Pattern recognition in leetcode
         * [Meeting rooms 2](https://leetcode.com/problems/meeting-rooms-ii)
         * [Employee free time](https://leetcode.com/problems/employee-free-time)
         * [Minimum cost to hire K workers](https://leetcode.com/problems/minimum-cost-to-hire-k-workers)
+        * [Task Scheduler](https://leetcode.com/problems/task-scheduler/description/)
