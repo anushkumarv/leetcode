@@ -472,3 +472,22 @@ class Solution17Jul:
                     res.append(mins[i])
 
         return res
+    
+# #####
+# https://leetcode.com/problems/find-valid-matrix-given-row-and-column-sums
+# ####  
+
+class Solution18Jul:
+    def restoreMatrix(self, rowSum, colSum):
+        N = len(rowSum)
+        M = len(colSum)
+
+        orig_matrix = [[0] * M for _ in range(N)]
+        for i in range(N):
+            for j in range(M):
+                orig_matrix[i][j] = min(rowSum[i], colSum[j])
+
+                rowSum[i] -= orig_matrix[i][j]
+                colSum[j] -= orig_matrix[i][j]
+
+        return orig_matrix
