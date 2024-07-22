@@ -1,4 +1,4 @@
-from collections import Counter
+from collections import Counter, deque
 from heapq import heappush, heappop
 from typing import List, Optional
 
@@ -491,3 +491,68 @@ class Solution18Jul:
                 colSum[j] -= orig_matrix[i][j]
 
         return orig_matrix
+
+# #####
+# https://leetcode.com/problems/build-a-matrix-with-conditions
+# ####  
+
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.inedge = set()
+        self.outedge = set()
+
+
+class Solution19Jul:
+    def buildMatrix(self, k: int, rowConditions: List[List[int]], colConditions: List[List[int]]) -> List[List[int]]:
+        row_order = self.get_order_preference(k, rowConditions)
+        col_order = self.get_order_preference(k, colConditions)
+        if len(row_order) != k or len(col_order) != k:
+            return []
+
+        d = {i+1:[] for i in range(k)}
+        for i, val in enumerate(row_order):
+            d[val].append(i)
+        for i, val in enumerate(col_order):
+            d[val].append(i)
+
+        res = [[0]*k for i in range(k)]
+        for k in d:
+            i, j = d[k][0], d[k][1]
+            res[i][j] = k
+
+        return res
+
+    def get_order_preference(self, k, conditions):
+        nodes = [Node(i+1) for i in range(k)]
+        for before, after in conditions:
+            src = nodes[before-1]
+            tgt = nodes[after-1]
+            src.outedge.add(tgt)
+            tgt.inedge.add(src)
+            
+        q = deque()
+        for node in nodes:
+            if len(node.inedge) == 0:
+                q.append(node)
+        
+        res = []
+        while q:
+            node = q.pop()
+            res.append(node.val)
+            for out_node in node.outedge:
+                out_node.inedge.remove(node)
+                if len(out_node.inedge) == 0:
+                    q.append(out_node)
+
+        return res
+    
+# #####
+# https://leetcode.com/problems/sort-the-people
+# ####  
+
+class Solution20Jul:
+    def sortPeople(self, names: List[str], heights: List[int]) -> List[str]:
+        hn = [(heights[i], names[i]) for i in range(len(heights))]
+        hn.sort(reverse=True)
+        return [item[1] for item in hn]
