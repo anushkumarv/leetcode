@@ -556,3 +556,27 @@ class Solution20Jul:
         hn = [(heights[i], names[i]) for i in range(len(heights))]
         hn.sort(reverse=True)
         return [item[1] for item in hn]
+
+# #####
+# https://leetcode.com/problems/sort-array-by-increasing-frequency
+# ####  
+
+class Number:
+    def __init__(self, num, freq):
+        self.num = num
+        self.freq = freq
+
+    def __lt__(self, number):
+        if self.freq < number.freq:
+            return True
+        if self.freq == number.freq:
+            return self.num > number.num
+        return False
+
+
+class Solution21Jul:
+    def frequencySort(self, nums: List[int]) -> List[int]:
+        freq = Counter(nums)
+        nf = [Number(num, freq[num]) for num in nums]
+        nf.sort()
+        return [number.num for number in nf]
